@@ -29,3 +29,40 @@ class Solution {
     }
 }
 
+// Coding Ninja
+
+public class Solution 
+{
+    public static int getTotalIslands(int[][] mat) 
+	{
+        int n=mat.length;
+        int m=mat[0].length;
+        int[][] visited=new int[n][m];
+        int[] dx={-1,-1,0,+1,+1,+1,0,-1};
+        int[] dy={0,-1,-1,-1,0,+1,+1,+1};
+        int count=0;
+        for(int i=0;i<mat.length;i++){
+            for(int j=0;j<mat[0].length;j++)
+            {
+                if(visited[i][j]==0 && mat[i][j]==1){
+                    dfs(i,j,visited,mat,dx,dy);
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    public static void dfs(int row,int col,int[][] visited,int[][] matrix,int[] dx,int[] dy){
+        visited[row][col]=1;
+        int n=matrix.length;
+        int m=matrix[0].length;
+        for(int k=0;k<8;k++){
+            int nrow=dx[k]+row;
+            int ncol=dy[k]+col;
+            if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && visited[nrow][ncol]==0 && matrix[nrow][ncol]==1){
+                dfs(nrow,ncol,visited,matrix,dx,dy);
+            }
+        }
+        return;
+    }
+}
